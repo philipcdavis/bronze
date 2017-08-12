@@ -25,7 +25,11 @@ function sizes(size) {
   }
 }
 
-const Btn = glamorous.button( props => ({
+const Btn = glamorous.button( props => {
+  const color = colors[props.color] || colors.blue;
+  const size = sizes(props.size)
+
+  return {
     display: "inline-block",
     border: "none",
     outline: "none",
@@ -33,23 +37,21 @@ const Btn = glamorous.button( props => ({
     textDecoration: "none",
     fontWeight: "bold",
     transition: "0.15s all ease",
-    padding: sizes(props.size).padding,
-    fontSize: sizes(props.size).fontSize,
-    borderRadius: sizes(props.size).borderRadius
-  })
-)
-
-const BtnBlue = glamorous(Btn)({
-  backgroundColor: colors.blue,
-  color: "white",
-  boxShadow: `0 1px 1px -2px ${lighten(colors.blue, 0.8)}, 0 2px 5px 0 ${lighten(colors.blue, 0.4)}`,
-  border: `1px solid ${darken(colors.blue, 0.4)}`,
-  [':hover']: {
-    backgroundColor: darken(colors.blue, 0.4),
+    // Sizes
+    padding: size.padding,
+    fontSize: size.fontSize,
+    borderRadius: size.borderRadius,
+    // Colors
+    backgroundColor: color,
+    color: props.color === "white" ? colors.charcoal : "white",
+    boxShadow: `0 1px 1px -2px ${lighten(color, 0.8)}, 0 2px 5px 0 ${lighten(color, 0.4)}`,
+    border: `1px solid ${darken(color, 0.4)}`,
+    ':hover': {
+      backgroundColor: darken(color, 0.4),
+    }
   }
 })
 
 export {
-  Btn,
-  BtnBlue
+  Btn
 };
