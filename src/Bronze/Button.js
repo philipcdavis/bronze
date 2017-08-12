@@ -1,6 +1,6 @@
 import React from 'react';
 import glamorous from 'glamorous';
-import { colors, darken, lighten } from './utils'
+import { colors, darken, lighten } from './Utils'
 
 function sizes(size) {
   switch (size) {
@@ -39,18 +39,17 @@ const Btn = glamorous.button( props => ({
   })
 )
 
-const BtnBlue = glamorous(Btn)(props => ({
+const BtnBlue = glamorous(Btn)({
   backgroundColor: colors.blue,
   color: "white",
   boxShadow: `0 1px 1px -2px ${lighten(colors.blue, 0.8)}, 0 2px 5px 0 ${lighten(colors.blue, 0.4)}`,
   border: `1px solid ${darken(colors.blue, 0.4)}`,
-
-  [':hover'] {
+  [':hover']: {
     backgroundColor: darken(colors.blue, 0.4),
   }
-}))
+})
 
-export default {
+export {
   Btn,
   BtnBlue
 };
